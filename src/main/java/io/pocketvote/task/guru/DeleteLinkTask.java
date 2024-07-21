@@ -19,7 +19,7 @@ public class DeleteLinkTask extends ApiRequest {
 
     @Override
     public void onCompletion(Server server) {
-        CommandSender player = name.equalsIgnoreCase("CONSOLE") ? new ConsoleCommandSender() : server.getPlayer(name);
+        CommandSender player = name.equalsIgnoreCase("CONSOLE") ? new ConsoleCommandSender() : server.getPlayerExact(name);
         if(player == null) return;
 
         if(!(super.getResult() instanceof TaskResult) || !hasResult() || !(getResult() instanceof TaskResult)) {

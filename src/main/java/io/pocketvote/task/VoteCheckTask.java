@@ -1,12 +1,12 @@
 package io.pocketvote.task;
 
-import java.util.LinkedHashMap;
-import java.util.regex.Pattern;
-
 import cn.nukkit.Server;
 import io.pocketvote.PocketVote;
 import io.pocketvote.data.TaskResult;
 import io.pocketvote.event.VoteEvent;
+
+import java.util.LinkedHashMap;
+import java.util.regex.Pattern;
 
 public class VoteCheckTask extends ApiRequest {
 
@@ -44,8 +44,14 @@ public class VoteCheckTask extends ApiRequest {
         }
 
         for(LinkedHashMap<String, String> vote : result.getVotes()) {
-            if(namePattern.matcher(vote.get("player")).find()) {
-                server.getPluginManager().callEvent(new VoteEvent(vote.get("player"), vote.get("ip"), vote.get("site")));
+            String site = vote.get("site");
+            if (!site.equals("minecraftpocket-servers.com")) {
+                System.out.println("Ignoring old voting site " + site);
+                continue;
+            }
+            String player = vote.get("player");
+            if(namePattern.matcher(player).find()) {
+                server.getPluginManager().callEvent(new VoteEvent(player, vote.get("ip"), site));
             }
         }
 

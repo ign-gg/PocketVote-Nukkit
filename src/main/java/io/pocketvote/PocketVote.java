@@ -4,13 +4,11 @@ import cn.nukkit.plugin.PluginBase;
 import cn.nukkit.scheduler.TaskHandler;
 import cn.nukkit.utils.ConfigSection;
 import cn.nukkit.utils.TextFormat;
-import io.pocketvote.cmd.*;
-import io.pocketvote.cmd.guru.*;
+import io.pocketvote.cmd.PocketVoteCommand;
 import io.pocketvote.listener.VoteListener;
 import io.pocketvote.task.ExpireVotesTask;
 import io.pocketvote.task.HeartbeatTask;
 import io.pocketvote.task.SchedulerTask;
-import io.pocketvote.task.VoteLinkTask;
 import io.pocketvote.util.VoteManager;
 
 import java.io.IOException;
@@ -72,13 +70,13 @@ public class PocketVote extends PluginBase {
 
         getServer().getPluginManager().registerEvents(new VoteListener(plugin), plugin);
         getServer().getCommandMap().register("pocketvote", new PocketVoteCommand(plugin));
-        getServer().getCommandMap().register("vote", new VoteCommand(plugin));
+        //getServer().getCommandMap().register("vote", new VoteCommand(plugin));
 
         // Register MCPE.Guru commands.
-        getServer().getCommandMap().register("guru", new GuruCommand());
-        getServer().getCommandMap().register("guadd", new GuAddCommand());
-        getServer().getCommandMap().register("gudel", new GuDelCommand());
-        getServer().getCommandMap().register("gulist", new GuListCommand());
+        //getServer().getCommandMap().register("guru", new GuruCommand());
+        //getServer().getCommandMap().register("guadd", new GuAddCommand());
+        //getServer().getCommandMap().register("gudel", new GuDelCommand());
+        //getServer().getCommandMap().register("gulist", new GuListCommand());
 
         /* Register tasks */
         tasks = new ArrayList<>();
@@ -87,7 +85,7 @@ public class PocketVote extends PluginBase {
         schedulerTask = getServer().getScheduler().scheduleRepeatingTask(plugin, new SchedulerTask(plugin), 1200); // 1200 = 60 seconds.
 
         // Get vote link.
-        getServer().getScheduler().scheduleAsyncTask(plugin, new VoteLinkTask(plugin));
+        //getServer().getScheduler().scheduleAsyncTask(plugin, new VoteLinkTask(plugin));
 
         // Report usage.
         getServer().getScheduler().scheduleAsyncTask(plugin, new HeartbeatTask());

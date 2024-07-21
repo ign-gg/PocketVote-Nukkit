@@ -27,7 +27,7 @@ public class SetLinkNameTask extends ApiRequest {
 
     @Override
     public void onCompletion(Server server) {
-        CommandSender player = this.player.equalsIgnoreCase("CONSOLE") ? new ConsoleCommandSender() : server.getPlayer(this.player);
+        CommandSender player = this.player.equalsIgnoreCase("CONSOLE") ? new ConsoleCommandSender() : server.getPlayerExact(this.player);
         if(player == null) return;
 
         if(!(super.getResult() instanceof TaskResult) || !hasResult() || !(getResult() instanceof TaskResult)) {
