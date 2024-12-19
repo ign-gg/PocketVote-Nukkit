@@ -5,6 +5,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import io.pocketvote.PocketVote;
 
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -48,7 +49,7 @@ public class ToolBox {
     public static String createJWT(HashMap<String, Object> fields) throws UnsupportedEncodingException {
         return Jwts.builder()
                 .addClaims(fields)
-                .signWith(SignatureAlgorithm.HS256, PocketVote.getPlugin().secret.getBytes("UTF-8"))
+                .signWith(SignatureAlgorithm.HS256, PocketVote.getPlugin().secret.getBytes(StandardCharsets.UTF_8))
                 .compact();
     }
 
@@ -63,6 +64,6 @@ public class ToolBox {
         for(Map.Entry<String, Object> entry : fields.entrySet()) {
             postData.append(entry.getKey()).append("=").append(entry.getValue().toString()).append("&");
         }
-        return postData.toString().substring(0, postData.length() - 1);
+        return postData.substring(0, postData.length() - 1);
     }
 }

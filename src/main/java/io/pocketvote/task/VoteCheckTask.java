@@ -17,7 +17,7 @@ public class VoteCheckTask extends ApiRequest {
         super(plugin.isDev() ? "http://127.0.0.1:9000/v2/check" : "https://api.pocketvote.io/v2/check", "GET", "VOTE", null);
         this.plugin = plugin;
 
-        plugin.getLogger().debug("Checking for outstanding votes.");
+        //plugin.getLogger().debug("Checking for outstanding votes.");
     }
 
     @Override

@@ -31,13 +31,13 @@ public class VoteListener implements Listener {
 
         for(String cmd : plugin.cmds) {
             plugin.getServer().dispatchCommand(sender, cmd
-                    .replaceAll("%player", event.getPlayer())
-                    .replaceAll("%ip", event.getIp())
-                    .replaceAll("%site", event.getSite())
+                    .replace("%player", event.getPlayer())
+                    .replace("%ip", event.getIp())
+                    .replace("%site", event.getSite())
             );
         }
 
-        if(plugin.getServer().getPlayer(event.getPlayer()) == null) {
+        if(plugin.getServer().getPlayerExact(event.getPlayer()) == null) {
             vm.addVote(event.getPlayer(), event.getSite(), event.getIp());
             vm.commit();
             return;
@@ -45,9 +45,9 @@ public class VoteListener implements Listener {
 
         for(String cmd : plugin.cmdos) {
             plugin.getServer().dispatchCommand(sender, cmd
-                    .replaceAll("%player", event.getPlayer())
-                    .replaceAll("%ip", event.getIp())
-                    .replaceAll("%site", event.getSite())
+                    .replace("%player", event.getPlayer())
+                    .replace("%ip", event.getIp())
+                    .replace("%site", event.getSite())
             );
         }
     }
@@ -70,9 +70,9 @@ public class VoteListener implements Listener {
             plugin.getServer().getPluginManager().callEvent(new VoteDispatchEvent(vote.getPlayer(), vote.getIp(), vote.getSite()));
             for(String cmd : plugin.cmdos) {
                 plugin.getServer().dispatchCommand(sender, cmd
-                        .replaceAll("%player", vote.getPlayer())
-                        .replaceAll("%ip", vote.getIp())
-                        .replaceAll("%site", vote.getSite())
+                        .replace("%player", vote.getPlayer())
+                        .replace("%ip", vote.getIp())
+                        .replace("%site", vote.getSite())
                 );
             }
             votes.remove();

@@ -13,7 +13,7 @@ public class ExpireVotesTask extends Task {
 
     @Override
     public void onRun(int i) {
-        plugin.getLogger().debug("Cleaning up expired votes.");
+        //plugin.getLogger().debug("Cleaning up expired votes.");
         int expired = plugin.getVoteManager().expireVotes();
         if(expired > 0) plugin.getLogger().debug("Expired " + expired + " votes.");
     }

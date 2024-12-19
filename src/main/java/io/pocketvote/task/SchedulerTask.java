@@ -13,7 +13,7 @@ public class SchedulerTask extends Task {
 
     @Override
     public void onRun(int i) {
-        plugin.getLogger().debug("Checking for votes.");
+        //plugin.getLogger().debug("Checking for votes.");
 
         if(!plugin.multiserver || plugin.multiserverRole.equalsIgnoreCase("master")) {
             if(plugin.secret != null && !plugin.secret.isEmpty() && plugin.identity != null && !plugin.identity.isEmpty()) {

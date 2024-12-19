@@ -16,7 +16,7 @@ public class TopVoterTask extends ApiRequest {
         super(plugin.isDev() ? "http://127.0.0.1:9000/v2/top/10" : "https://api.pocketvote.io/v2/top/10", "GET", "TOP", null);
         this.player = player;
 
-        plugin.getLogger().debug("Getting top voters.");
+        //plugin.getLogger().debug("Getting top voters.");
     }
 
     @Override

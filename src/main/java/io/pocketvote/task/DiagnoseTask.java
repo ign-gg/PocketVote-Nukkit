@@ -11,6 +11,8 @@ import io.jsonwebtoken.Jwts;
 import io.pocketvote.PocketVote;
 import io.pocketvote.data.TaskResult;
 
+import java.nio.charset.StandardCharsets;
+
 public class DiagnoseTask extends ApiRequest {
 
     private String player;
@@ -51,7 +53,7 @@ public class DiagnoseTask extends ApiRequest {
         player.sendMessage((payload.get("hasVotes").asBoolean() ? TextFormat.GREEN + "Yes -" : TextFormat.RED + "No -") + " Has votes (trivial)");
 
         try {
-            Jws<Claims> claims = Jwts.parser().setSigningKey(PocketVote.getPlugin().secret.getBytes("UTF-8")).parseClaimsJws(payload.get("voteSample").asText());
+            Jws<Claims> claims = Jwts.parser().setSigningKey(PocketVote.getPlugin().secret.getBytes(StandardCharsets.UTF_8)).parseClaimsJws(payload.get("voteSample").asText());
 
             if(claims.getBody().size() == 0) throw new Exception("Failed to parse token");
 

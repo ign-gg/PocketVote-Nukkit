@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 
 public class ApiRequest extends AsyncTask {
@@ -106,7 +107,7 @@ public class ApiRequest extends AsyncTask {
                 case "VOTE":
                     // Only a successful API request can reach this.
                     if(result.hasPayload()) {
-                        Jws<Claims> claims = Jwts.parser().setSigningKey(secret.getBytes("UTF-8")).parseClaimsJws(json.get("payload").asText());
+                        Jws<Claims> claims = Jwts.parser().setSigningKey(secret.getBytes(StandardCharsets.UTF_8)).parseClaimsJws(json.get("payload").asText());
                         result.setClaims(claims.getBody(), true);
                     }
                     break;
